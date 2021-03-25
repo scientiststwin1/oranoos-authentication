@@ -4,11 +4,14 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
+import validation from './config/configs.schema'
+
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
+      validationSchema: validation
     })
   ],
   controllers: [AppController],
