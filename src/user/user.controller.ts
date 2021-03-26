@@ -1,7 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { LoginByPhoneDto, RegisterByPhoneDto } from './models/user.dto';
 import { UserService } from './user.service';
-
+import {ApiTags} from '@nestjs/swagger'
+@ApiTags('user')
 @Controller('user')
 export class UserController {
 
