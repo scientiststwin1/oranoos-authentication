@@ -1,6 +1,6 @@
 import { ParentEntity } from "src/shared/parent-entity.base"
 import { Column, DeleteDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm"
-import { RolesEntity } from "./role.entity"
+import {Role} from './user.enum'
 
 @Entity('users')
 export class UserEntity extends ParentEntity {
@@ -16,7 +16,7 @@ export class UserEntity extends ParentEntity {
   @Column({ type: 'varchar', length: 20, unique: true, nullable: true })
   phone: string
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 20, nullable: true })
   avatar: string
 
   @Column({
@@ -38,22 +38,8 @@ export class UserEntity extends ParentEntity {
   @Column('date', { nullable: true })
   birth_day: Date
 
-  @ManyToMany(
-    () => RolesEntity,
-    roles => roles.users,
-  )
-  @JoinTable({
-    name: 'user_roles',
-    joinColumn: {
-      name: 'user_id',
-      referencedColumnName: 'id',
-    },
-    inverseJoinColumn: {
-      name: 'role_id',
-      referencedColumnName: 'id',
-    },
-  })
-  roles: RolesEntity[]
+  @Column('int')
+  role: Role
 
   @DeleteDateColumn({ type: 'timestamp' })
   deleted_at?: Date
