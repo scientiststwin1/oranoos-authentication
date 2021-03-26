@@ -39,7 +39,7 @@ export class UserEntity extends ParentEntity {
   birth_day: Date
 
   @Column('int')
-  roles: Role
+  role: Role
 
   @DeleteDateColumn({ type: 'timestamp' })
   deleted_at?: Date
