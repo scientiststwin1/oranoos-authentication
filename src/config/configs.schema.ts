@@ -14,4 +14,6 @@ export default Joi.object({
 
     RABBITMQ_HOST: Joi.string().required(),
     RABBITMQ_PORT: Joi.number().required(),
+
+    JWT_SECRET_KEY: Joi.string().required(),
 })

@@ -4,8 +4,9 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import validation from './config/configs.schema'
+import validation from './config/configs.schema';
 import RabbitMQConfig from "./config/rabbitmq.config";
+import JwtSecretKey from "./config/jwt.config"
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import RabbitMQConfig from "./config/rabbitmq.config";
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: validation,
-      load: [RabbitMQConfig]
+      load: [RabbitMQConfig, JwtSecretKey]
     })
   ],
   controllers: [AppController],
