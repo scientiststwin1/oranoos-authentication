@@ -16,7 +16,7 @@ export class UserEntity extends ParentEntity {
   @Column({ type: 'varchar', length: 20, unique: true, nullable: true })
   phone: string
 
-  @Column({ type: 'varchar', length: 20 })
+  @Column({ type: 'varchar', length: 20, nullable: true })
   avatar: string
 
   @Column({
