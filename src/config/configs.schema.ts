@@ -12,4 +12,6 @@ export default Joi.object({
     DB_PASSWORD: Joi.string().required(),
     DB_NAME: Joi.string().required(),
 
+    RABBITMQ_HOST: Joi.string().required(),
+    RABBITMQ_PORT: Joi.number().required(),
 })
