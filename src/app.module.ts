@@ -5,13 +5,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import validation from './config/configs.schema'
+import RabbitMQConfig from "./config/rabbitmq.config";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
-      validationSchema: validation
+      validationSchema: validation,
+      load: [RabbitMQConfig]
     })
   ],
   controllers: [AppController],
