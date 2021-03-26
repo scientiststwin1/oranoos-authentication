@@ -18,7 +18,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:drop": "rimraf dist && nest build && node_modules/.bin/typeorm schema:drop",
+    "db:run": "rimraf dist && nest build && node_modules/.bin/typeorm migration:run",
+    "db:generate": "rimraf dist && nest build && node_modules/.bin/typeorm migration:generate"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.13",
