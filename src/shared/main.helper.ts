@@ -7,13 +7,12 @@ export class Result {
       options?: {
         message?: string
         meta?: any
-        success?: boolean
         code?: number
       },
     ) {
       this.data = data
+      this.success = true
       if (options != undefined) {
-        this.success = options.success != undefined ? options.success : true
         this.code = options.code != undefined ? options.code : 200
         this.message = options.message
         this.meta = options.meta
@@ -33,14 +32,13 @@ export class Result {
 export class ResultError extends HttpException {
   constructor(
     data: any,
-    success: boolean = false,
     code: number = 1001,
     statusCode: number = 400,
     // TODO: Change message to required
     message?: string,
   ) {
     super(data, statusCode)
-    this.success = success
+    this.success = false
     this.code = code
     this.data = data
     this.message = message
@@ -58,14 +56,13 @@ export class RpcResultError extends RpcException {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   constructor(
     data: any,
-    success = false,
     code = 1001,
     // statusCode = 400,
     // TODO: Change message to required
     message?: string,
   ) {
     super(data)
-    this.success = success
+    this.success = false
     this.code = code
     this.data = data
     this.cmessage = message
