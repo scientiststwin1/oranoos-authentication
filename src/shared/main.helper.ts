@@ -49,7 +49,7 @@ export class ResultError extends HttpException {
   message: string
 
   getResponse(): string | object {
-    return { success: this.success, code: this.code, data: this.data }
+    return { success: this.success, code: this.code, data: this.data, message: this.message }
   }
 }
 export class RpcResultError extends RpcException {
