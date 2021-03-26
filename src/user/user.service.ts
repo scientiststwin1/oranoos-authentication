@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Result, ResultError } from 'src/shared/main.helper';
+import { Result, ResultError, RpcResultError } from 'src/shared/main.helper';
+import { In } from 'typeorm';
 import { LoginByPhoneDto, RegisterByPhoneDto } from './models/user.dto';
 import { UserEntity } from './models/user.entity';
 import { Role } from './models/user.enum';
@@ -30,6 +31,7 @@ export class UserService {
                 
             }catch(err){
                 console.log(err)
+                if(err.code == "ER_DUP_ENTRY") reject(new ResultError(null, 400, 400, "phone existed"))
                 reject(new ResultError(err?.data))
             }
         })
@@ -46,6 +48,30 @@ export class UserService {
                 resolve(new Result({access_token: jwt}))
             }catch(err){
                 reject(new ResultError(err))
+            }
+        })
+    }
+
+    userInformation(userId: string){
+        return new Promise((resolve, reject) => {
+            try{
+                const user = this.userRepository.findOne(userId)
+
+                resolve(new Result(user, {message: "user information", code: 200}))
+            }catch(err){
+                reject(new RpcResultError(null,500,err?.message))
+            }
+        })
+    }
+
+    usersInformation(userIds: string[]){
+        return new Promise((resolve, reject)=>{
+            try{
+                const users = this.userRepository.find({id: In(userIds)});
+                
+                resolve(new Result(users, {message: "users information", code: 200}))
+            }catch(err){
+                reject(new RpcResultError(null,500,err?.message))
             }
         })
     }
