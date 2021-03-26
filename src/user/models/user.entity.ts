@@ -58,25 +58,3 @@ export class UserEntity extends ParentEntity {
   @DeleteDateColumn({ type: 'timestamp' })
   deleted_at?: Date
 }
-// @ManyToMany(
-//     () => UserEntity,
-//     user => user.roles,
-// )
-// users: UserEntity[]
-
-// @ManyToMany(
-//     () => RolesEntity,
-//     roles => roles.users,
-//   )
-//   @JoinTable({
-//     name: 'user_roles',
-//     joinColumn: {
-//       name: 'user_id',
-//       referencedColumnName: 'id',
-//     },
-//     inverseJoinColumn: {
-//       name: 'role_id',
-//       referencedColumnName: 'id',
-//     },
-//   })
-//   roles: RolesEntity[]
