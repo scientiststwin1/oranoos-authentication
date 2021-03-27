@@ -4,7 +4,7 @@ import { Result, ResultError, RpcResultError } from 'src/shared/main.helper';
 import { In } from 'typeorm';
 import { LoginByPhoneDto, RegisterByPhoneDto } from './models/user.dto';
 import { UserEntity } from './models/user.entity';
-import { Role } from './models/user.enum';
+import { UserRole } from './models/user.enum';
 import { UserRepository } from './repository/user.repository';
 
 @Injectable()
@@ -22,7 +22,7 @@ export class UserService {
                 let user = new UserEntity()
                 user.phone = phone
                 user.password = password
-                user.role = Role.USER
+                user.role = UserRole.USER
 
                 await this.userRepository.save<UserEntity>(user)
                 const jwt = this.createJwt(user)
