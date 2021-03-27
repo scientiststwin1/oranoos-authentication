@@ -18,15 +18,32 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:drop": "rimraf dist && nest build && node_modules/.bin/typeorm schema:drop",
+    "db:run": "rimraf dist && nest build && node_modules/.bin/typeorm migration:run",
+    "db:generate": "rimraf dist && nest build && node_modules/.bin/typeorm migration:generate"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.13",
+    "@nestjs/config": "^0.6.3",
     "@nestjs/core": "^7.6.13",
+    "@nestjs/jwt": "^7.2.0",
+    "@nestjs/microservices": "^7.6.15",
     "@nestjs/platform-express": "^7.6.13",
+    "@nestjs/swagger": "^4.8.0",
+    "@nestjs/typeorm": "^7.1.5",
+    "amqp-connection-manager": "^3.2.2",
+    "amqplib": "^0.7.1",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
+    "joi": "^17.4.0",
+    "mysql2": "^2.2.5",
+    "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6"
+    "rxjs": "^6.6.6",
+    "swagger-ui-express": "^4.1.6",
+    "typeorm": "^0.2.31"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.5.6",
@@ -35,6 +52,7 @@
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.31",
+    "@types/passport-jwt": "^3.0.5",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.15.2",
